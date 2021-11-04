@@ -22,15 +22,15 @@ public class Main {
         //количество людей не старше 18
         List<String> recruit = persons.stream()
                 .filter(person -> 18 < person.getAge() && person.getAge() < 27)
-                .filter(person -> Sex.MAN == person.getSex())
+                .filter(person -> Sex.MAN.equals(person.getSex()))
                 .map(Person::getFamily)
                 .collect(Collectors.toList());
         //фамилии призывников
         List<Person> people = persons.stream()
-                .filter(person -> Education.HIGHER == person.getEducation())
+                .filter(person -> Education.HIGHER.equals(person.getEducation()))
                 .filter(person -> 18 < person.getAge())
-                .filter(person -> (person.getSex() == Sex.MAN && person.getAge() < 65) ||
-                        (person.getSex() == Sex.WOMAN && person.getAge() < 60))
+                .filter(person -> (Sex.MAN.equals(person.getSex()) && person.getAge() < 65) ||
+                        (Sex.WOMAN.equals(person.getSex()) && person.getAge() < 60))
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
     }
